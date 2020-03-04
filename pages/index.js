@@ -23,18 +23,23 @@ export default function Index({ humans }) {
   const [itemsPerPage, setItemsPerPage] = useState(50);
   const [selectedItemID, setSelectedItemID] = useState();
   const [selectedItemLastName, setSelectedItemLastName] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
   const [resItems, setResItems] = useState([]);
   const headers = ["id", "firstName", "lastName", "email", "phone"];
-
-  useEffect(() => {
-    setLoading(true);
+  const minUrl = "http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
+ const maxUrl = "http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
+ const [url, setUrl] = useState();
+  
+ 
+ 
+ useEffect(() => {
+   setLoading(true)
     fetch(
-      "http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
+      url
     )
       .then(response => response.json())
       .then(data => setResItems(data));
-  }, []);
+  }, [url]);
 
   const handleClick = event => {
     setCurrentPage(Number(event.target.id));
@@ -93,6 +98,16 @@ export default function Index({ humans }) {
       </thead>
     );
   };
+
+const Urlm = ()=>{
+  setUrl(minUrl)
+}
+const Urlb = ()=>{
+  setUrl(maxUrl)
+}
+
+
+
 
   const currentItems = useMemo(() => {
     let indexOfLastItem = currentPage * itemsPerPage;
@@ -161,10 +176,16 @@ export default function Index({ humans }) {
 
   return (
     <div style={styles.root}>
-      {loading ? (
+      {
+      
+      url?(
+      loading ? (
+        <div>
         <p>loading... </p>
+        
+        </div>
       ) : (
-        <>
+        <div>
           <Add addNewItem={addNewItem} />
           <Search onSearch={handleClickSearch} onReset={handleReset} />
           <Table
@@ -174,8 +195,13 @@ export default function Index({ humans }) {
             onClickRow={handleClickRow}
           />
           {renderDescription()}
-        </>
-      )}
+        </div>
+      )):(
+      <div>
+      <button onClick={Urlm}>Малый список </button>
+        <button onClick={Urlb}>Большой список </button>
+        </div>)
+    }
     </div>
   );
 }

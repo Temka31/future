@@ -2159,7 +2159,7 @@ function Index(_ref) {
       selectedItemLastName = _useState5[0],
       setSelectedItemLastName = _useState5[1];
 
-  var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
+  var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       loading = _useState6[0],
       setLoading = _useState6[1];
 
@@ -2168,14 +2168,21 @@ function Index(_ref) {
       setResItems = _useState7[1];
 
   var headers = ["id", "firstName", "lastName", "email", "phone"];
+  var minUrl = "http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}";
+  var maxUrl = "http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}";
+
+  var _useState8 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      url = _useState8[0],
+      setUrl = _useState8[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     setLoading(true);
-    isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()("http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}").then(function (response) {
+    isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()(url).then(function (response) {
       return response.json();
     }).then(function (data) {
       return setResItems(data);
     });
-  }, []);
+  }, [url]);
 
   var handleClick = function handleClick(event) {
     setCurrentPage(Number(event.target.id));
@@ -2211,13 +2218,13 @@ function Index(_ref) {
     return __jsx("thead", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 84
       },
       __self: this
     }, __jsx("tr", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 85
       },
       __self: this
     }, headers.map(function (header) {
@@ -2226,7 +2233,7 @@ function Index(_ref) {
         key: header,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 83
+          lineNumber: 88
         },
         __self: this
       }, __jsx(_components_sortButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -2235,11 +2242,19 @@ function Index(_ref) {
         onSort: handleSort,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 89
         },
         __self: this
       }));
     })));
+  };
+
+  var Urlm = function Urlm() {
+    setUrl(minUrl);
+  };
+
+  var Urlb = function Urlb() {
+    setUrl(maxUrl);
   };
 
   var currentItems = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(function () {
@@ -2294,7 +2309,7 @@ function Index(_ref) {
       onClick: handleClick,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 142
+        lineNumber: 157
       },
       __self: this
     }, number);
@@ -2308,7 +2323,7 @@ function Index(_ref) {
         })],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 151
+          lineNumber: 166
         },
         __self: this
       });
@@ -2319,20 +2334,32 @@ function Index(_ref) {
     style: styles.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 163
+      lineNumber: 178
     },
     __self: this
-  }, loading ? __jsx("p", {
+  }, url ? loading ? __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 165
+      lineNumber: 183
     },
     __self: this
-  }, "loading... ") : __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(_components_add__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 184
+    },
+    __self: this
+  }, "loading... ")) : __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 188
+    },
+    __self: this
+  }, __jsx(_components_add__WEBPACK_IMPORTED_MODULE_6__["default"], {
     addNewItem: addNewItem,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 168
+      lineNumber: 189
     },
     __self: this
   }), __jsx(_components_search__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -2340,7 +2367,7 @@ function Index(_ref) {
     onReset: handleReset,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 169
+      lineNumber: 190
     },
     __self: this
   }), __jsx(_components_table__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -2350,10 +2377,30 @@ function Index(_ref) {
     onClickRow: handleClickRow,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 170
+      lineNumber: 191
     },
     __self: this
-  }), renderDescription()));
+  }), renderDescription()) : __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 200
+    },
+    __self: this
+  }, __jsx("button", {
+    onClick: Urlm,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 201
+    },
+    __self: this
+  }, "\u041C\u0430\u043B\u044B\u0439 \u0441\u043F\u0438\u0441\u043E\u043A "), __jsx("button", {
+    onClick: Urlb,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 202
+    },
+    __self: this
+  }, "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u0441\u043F\u0438\u0441\u043E\u043A ")));
 }
 
 /***/ }),

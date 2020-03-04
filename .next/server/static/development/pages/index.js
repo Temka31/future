@@ -718,16 +718,22 @@ function Index({
   const {
     0: loading,
     1: setLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
   const {
     0: resItems,
     1: setResItems
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const headers = ["id", "firstName", "lastName", "email", "phone"];
+  const minUrl = "http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}";
+  const maxUrl = "http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}";
+  const {
+    0: url,
+    1: setUrl
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     setLoading(true);
-    isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()("http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}").then(response => response.json()).then(data => setResItems(data));
-  }, []);
+    isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()(url).then(response => response.json()).then(data => setResItems(data));
+  }, [url]);
 
   const handleClick = event => {
     setCurrentPage(Number(event.target.id));
@@ -763,13 +769,13 @@ function Index({
     return __jsx("thead", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 84
       },
       __self: this
     }, __jsx("tr", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 85
       },
       __self: this
     }, headers.map(header => {
@@ -778,7 +784,7 @@ function Index({
         key: header,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 83
+          lineNumber: 88
         },
         __self: this
       }, __jsx(_components_sortButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -787,11 +793,19 @@ function Index({
         onSort: handleSort,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 89
         },
         __self: this
       }));
     })));
+  };
+
+  const Urlm = () => {
+    setUrl(minUrl);
+  };
+
+  const Urlb = () => {
+    setUrl(maxUrl);
   };
 
   const currentItems = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(() => {
@@ -846,7 +860,7 @@ function Index({
       onClick: handleClick,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 142
+        lineNumber: 157
       },
       __self: this
     }, number);
@@ -858,7 +872,7 @@ function Index({
         item: currentItems[currentItems.findIndex(item => item.id == selectedItemID && item.lastName == selectedItemLastName)],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 151
+          lineNumber: 166
         },
         __self: this
       });
@@ -869,20 +883,32 @@ function Index({
     style: styles.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 163
+      lineNumber: 178
     },
     __self: this
-  }, loading ? __jsx("p", {
+  }, url ? loading ? __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 165
+      lineNumber: 183
     },
     __self: this
-  }, "loading... ") : __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_add__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 184
+    },
+    __self: this
+  }, "loading... ")) : __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 188
+    },
+    __self: this
+  }, __jsx(_components_add__WEBPACK_IMPORTED_MODULE_5__["default"], {
     addNewItem: addNewItem,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 168
+      lineNumber: 189
     },
     __self: this
   }), __jsx(_components_search__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -890,7 +916,7 @@ function Index({
     onReset: handleReset,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 169
+      lineNumber: 190
     },
     __self: this
   }), __jsx(_components_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -900,10 +926,30 @@ function Index({
     onClickRow: handleClickRow,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 170
+      lineNumber: 191
     },
     __self: this
-  }), renderDescription()));
+  }), renderDescription()) : __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 200
+    },
+    __self: this
+  }, __jsx("button", {
+    onClick: Urlm,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 201
+    },
+    __self: this
+  }, "\u041C\u0430\u043B\u044B\u0439 \u0441\u043F\u0438\u0441\u043E\u043A "), __jsx("button", {
+    onClick: Urlb,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 202
+    },
+    __self: this
+  }, "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u0441\u043F\u0438\u0441\u043E\u043A ")));
 }
 
 /***/ }),
