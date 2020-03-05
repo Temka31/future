@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -392,7 +392,7 @@ function Description({
       lineNumber: 3
     },
     __self: this
-  }, item.lastName), __jsx("br", {
+  }, item.lastName, " ", item.firstName), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 4
@@ -559,18 +559,18 @@ function sortButton({
 
   const handleClick = () => {
     switch (sort) {
-      case "abc":
-        setSort("cba");
+      case "asc":
+        setSort("desc");
         onSort(title, false);
         break;
 
-      case "cba":
+      case "desc":
         setSort("not");
         onReset();
         break;
 
       case "not":
-        setSort("abc");
+        setSort("asc");
         onSort(title, true);
         break;
     }
@@ -954,7 +954,7 @@ function Index({
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

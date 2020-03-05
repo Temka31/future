@@ -1,6 +1,6 @@
 export default function Description({item}){
     return(
-        <div>Выбран пользователь <b>{item.lastName}</b>
+        <div>Выбран пользователь <b>{item.lastName} {item.firstName}</b>
         <br/>
         Описание:
         <textarea defaultValue={item.description}>

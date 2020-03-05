@@ -4,16 +4,16 @@ export default function sortButton({title, onSort, onReset}) {
   const [sort, setSort] = useState("not");
   const handleClick = () => {
     switch (sort) {
-      case "abc":
-        setSort("cba");
+      case "asc":
+        setSort("desc");
         onSort(title, false);
         break;
-      case "cba":
+      case "desc":
         setSort("not");
         onReset();
         break;
       case "not":
-        setSort("abc");
+        setSort("asc");
         onSort(title, true);
         break;
     }

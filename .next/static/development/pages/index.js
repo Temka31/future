@@ -296,7 +296,7 @@ function Description(_ref) {
       lineNumber: 3
     },
     __self: this
-  }, item.lastName), __jsx("br", {
+  }, item.lastName, " ", item.firstName), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 4
@@ -461,18 +461,18 @@ function sortButton(_ref) {
 
   var handleClick = function handleClick() {
     switch (sort) {
-      case "abc":
-        setSort("cba");
+      case "asc":
+        setSort("desc");
         onSort(title, false);
         break;
 
-      case "cba":
+      case "desc":
         setSort("not");
         onReset();
         break;
 
       case "not":
-        setSort("abc");
+        setSort("asc");
         onSort(title, true);
         break;
     }
@@ -2405,7 +2405,7 @@ function Index(_ref) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Ftema%2Ffuture%2Fpages%2Findex.js ***!
   \************************************************************************************************************/
@@ -2428,5 +2428,5 @@ module.exports = dll_82519ec661270f7f484f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
